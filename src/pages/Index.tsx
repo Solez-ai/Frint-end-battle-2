@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState, useRef, forwardRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Sparkles,
@@ -15,6 +15,7 @@ import EventsSection from "@/components/ui/events-section";
 import StatsSection from "@/components/ui/stats-section";
 import PricingSection from "@/components/ui/pricing-section";
 import TestimonialsSection from "@/components/ui/testimonials-section";
+import NavigationMenuDots from "@/components/ui/navigation-menu-dots";
 
 const Index = () => {
   const [activeHover, setActiveHover] = useState<

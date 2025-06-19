@@ -489,11 +489,11 @@ const OutreachSection = ({ data }: { data: any[] }) => {
       <div className="flex justify-center gap-8 mt-6">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-gradient-to-r from-red-400 to-red-500 rounded"></div>
-          <span className="text-sm text-gray-600">Monthly Engagement</span>
+          <span className="text-sm text-white/70">Monthly Engagement</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-1 border-t-2 border-dashed border-gray-300"></div>
-          <span className="text-sm text-gray-600">Growth Targets</span>
+          <div className="w-4 h-1 border-t-2 border-dashed border-white/30"></div>
+          <span className="text-sm text-white/70">Growth Targets</span>
         </div>
       </div>
     </motion.div>

@@ -16,20 +16,52 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Check if this is the initial page load
+    const isInitialLoad = !sessionStorage.getItem("app-loaded");
+
+    if (isInitialLoad) {
+      // Mark that the app has been loaded in this session
+      sessionStorage.setItem("app-loaded", "true");
+      setIsLoading(true);
+    } else {
+      // If it's not the initial load, skip the loading screen
+      setIsLoading(false);
+      setShowContent(true);
+    }
+  }, []);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    // Small delay to ensure smooth transition
+    setTimeout(() => setShowContent(true), 100);
+  };
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        {isLoading && <LoadingProgressBar onComplete={handleLoadingComplete} />}
+
+        {showContent && (
+          <>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </>
+        )}
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

@@ -23,6 +23,19 @@ const Index = () => {
   >(null);
   const featuresRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        // Close any open menus - handled by NavigationMenuDots component
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const handleWordHover = (
     word: "reports" | "forecasts" | "dashboards" | "consolidations" | null,
   ) => {

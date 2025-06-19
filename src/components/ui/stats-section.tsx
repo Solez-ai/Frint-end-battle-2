@@ -11,8 +11,6 @@ import {
   MessageSquare,
   Share2,
   Heart,
-  Download,
-  Filter,
 } from "lucide-react";
 
 const StatsSection = () => {

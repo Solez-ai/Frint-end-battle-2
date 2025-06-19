@@ -281,7 +281,7 @@ const PricingSection = () => {
               }}
               transition={{ duration: 0.5 }}
             >
-              {billingCycle === "yearly" ? "Save $468/year" : "Save 15%"}
+              {billingCycle === "yearly" ? "Save up to $444/year" : "Save 15%"}
             </motion.div>
           </div>
         </motion.div>

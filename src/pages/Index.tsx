@@ -51,8 +51,14 @@ const Index = () => {
 
   return (
     <>
+      {/* Navigation Menu */}
+      <NavigationMenuDots />
+
       {/* Hero Section */}
-      <div className="min-h-screen bg-gradient-to-br from-brand-900 via-brand-800 to-teal-900 relative overflow-hidden">
+      <div
+        id="hero"
+        className="min-h-screen bg-gradient-to-br from-brand-900 via-brand-800 to-teal-900 relative overflow-hidden"
+      >
         {/* Background decoration elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>

@@ -112,7 +112,7 @@ const StatsSection = () => {
         transition={{ duration: 1, delay: 0.2 }}
       >
         <motion.p
-          className="text-gray-600 text-sm font-medium tracking-wider mb-6"
+          className="text-white/60 text-sm font-medium tracking-wider mb-6"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -121,7 +121,7 @@ const StatsSection = () => {
         </motion.p>
 
         <motion.h2
-          className="text-5xl md:text-7xl font-bold text-gray-900 mb-4"
+          className="text-5xl md:text-7xl font-bold text-white mb-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.6 }}

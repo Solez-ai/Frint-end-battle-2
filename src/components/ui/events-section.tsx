@@ -719,14 +719,16 @@ const EventsSection = () => {
               </div>
             </motion.div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-2xl font-bold text-white mb-2"
-            >
-              Get Event Details
-            </motion.h2>
+            <DialogTitle asChild>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-2xl font-bold text-white mb-2"
+              >
+                Get Event Details
+              </motion.h2>
+            </DialogTitle>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}

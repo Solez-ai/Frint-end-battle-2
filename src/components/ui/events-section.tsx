@@ -692,6 +692,184 @@ const EventsSection = () => {
         }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Email Modal */}
+      <Dialog open={isEmailModalOpen} onOpenChange={setIsEmailModalOpen}>
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 border-gray-700/50 backdrop-blur-xl">
+          <DialogHeader className="text-center">
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              className="mx-auto mb-4"
+            >
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center"
+                style={{
+                  background: `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                }}
+              >
+                <Mail className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-2xl font-bold text-white mb-2"
+            >
+              Get Event Details
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-gray-300"
+            >
+              Enter your email to receive detailed information about{" "}
+              <span
+                className="font-semibold"
+                style={{ color: currentEventData.primaryColor }}
+              >
+                {currentEventData.title}
+              </span>
+            </motion.p>
+          </DialogHeader>
+
+          <AnimatePresence mode="wait">
+            {!isEmailSent ? (
+              <motion.div
+                key="email-form"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="space-y-4 py-4"
+              >
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Input
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/30"
+                    onKeyPress={(e) => e.key === "Enter" && handleEmailSubmit()}
+                  />
+                </motion.div>
+
+                <DialogFooter className="flex-col sm:flex-row gap-3">
+                  <motion.button
+                    onClick={() => setIsEmailModalOpen(false)}
+                    className="px-4 py-2 text-gray-300 hover:text-white transition-colors duration-200"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Cancel
+                  </motion.button>
+
+                  <motion.button
+                    onClick={handleEmailSubmit}
+                    disabled={!email.trim()}
+                    className="group relative overflow-hidden rounded-lg px-6 py-2 font-semibold text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      background: email.trim()
+                        ? `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`
+                        : "rgba(107, 114, 128, 0.5)",
+                    }}
+                    whileHover={
+                      email.trim()
+                        ? {
+                            scale: 1.05,
+                            boxShadow: `0 10px 25px ${currentEventData.primaryColor}40`,
+                          }
+                        : {}
+                    }
+                    whileTap={email.trim() ? { scale: 0.98 } : {}}
+                  >
+                    <motion.div
+                      className="flex items-center gap-2"
+                      whileHover={{ x: 2 }}
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>Send Details</span>
+                    </motion.div>
+                  </motion.button>
+                </DialogFooter>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="success-message"
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
+                className="text-center py-8"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.2,
+                    type: "spring",
+                    bounce: 0.6,
+                  }}
+                  className="mx-auto mb-4"
+                >
+                  <div
+                    className="w-20 h-20 rounded-full flex items-center justify-center"
+                    style={{
+                      background: `linear-gradient(135deg, #10b981, #059669)`,
+                    }}
+                  >
+                    <Check className="w-10 h-10 text-white" />
+                  </div>
+                </motion.div>
+
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  className="text-2xl font-bold text-white mb-2"
+                >
+                  Details Sent!
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  className="text-gray-300"
+                >
+                  The details were sent to{" "}
+                  <span className="font-semibold text-green-400">{email}</span>
+                  <br />
+                  Thanks a lot!
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                  className="mt-6"
+                >
+                  <motion.div
+                    className="w-24 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto"
+                    initial={{ width: 0 }}
+                    animate={{ width: 96 }}
+                    transition={{ duration: 1, delay: 0.7 }}
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

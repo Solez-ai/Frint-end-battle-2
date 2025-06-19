@@ -458,6 +458,9 @@ const Index = () => {
 
       {/* Stats Section */}
       <StatsSection />
+
+      {/* Pricing Section */}
+      <PricingSection />
     </>
   );
 };

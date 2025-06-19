@@ -275,7 +275,6 @@ const TestimonialsSection = () => {
               style={{
                 top: testimonial.position.top,
                 left: testimonial.position.left,
-                right: testimonial.position.right,
               }}
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={

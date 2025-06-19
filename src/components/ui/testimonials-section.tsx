@@ -285,7 +285,7 @@ const TestimonialsSection = () => {
                 bounce: 0.4,
               }}
               variants={floatingVariants}
-              animate={isInView ? "animate" : ""}
+              animate="animate"
               onMouseEnter={() => setHoveredCard(testimonial.id)}
               onMouseLeave={() => setHoveredCard(null)}
               whileHover={{

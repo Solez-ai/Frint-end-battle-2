@@ -377,19 +377,23 @@ const PricingSection = () => {
                     <span className="text-5xl font-bold text-white">
                       ${billingCycle === "monthly" ? plan.monthly : plan.yearly}
                     </span>
-                    <span className="text-white/60 text-lg">
-                      /{billingCycle === "monthly" ? "month" : "month"}
-                    </span>
+                    <span className="text-white/60 text-lg">/month</span>
                   </div>
 
                   {billingCycle === "yearly" && (
                     <motion.div
-                      className="text-green-400 text-sm font-medium"
+                      className="space-y-1"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      Billed annually (${plan.yearly * 12}/year)
+                      <div className="text-green-400 text-sm font-medium">
+                        Billed annually: ${plan.yearly * 12}/year
+                      </div>
+                      <div className="text-green-300 text-xs">
+                        Save ${(plan.monthly - plan.yearly) * 12}/year vs
+                        monthly
+                      </div>
                     </motion.div>
                   )}
                 </div>

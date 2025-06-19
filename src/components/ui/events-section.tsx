@@ -466,6 +466,60 @@ const EventsSection = () => {
                   </motion.div>
                 ))}
               </motion.div>
+
+              {/* Email Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.7 }}
+              >
+                <motion.button
+                  onClick={handleEmailModalOpen}
+                  className="group relative overflow-hidden rounded-xl px-8 py-4 font-semibold text-white transition-all duration-300"
+                  style={{
+                    background: `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: `0 20px 40px ${currentEventData.primaryColor}40`,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  animate={{
+                    background: [
+                      `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                      `linear-gradient(135deg, ${currentEventData.secondaryColor}, ${currentEventData.primaryColor})`,
+                      `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                    ],
+                  }}
+                  transition={{
+                    background: { duration: 3, repeat: Infinity },
+                  }}
+                >
+                  <motion.div
+                    className="flex items-center gap-3"
+                    whileHover={{ x: 5 }}
+                  >
+                    <Mail className="w-5 h-5" />
+                    <span>Email me the Details</span>
+                  </motion.div>
+
+                  {/* Animated background gradient */}
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(45deg, transparent, ${currentEventData.primaryColor}30, transparent)`,
+                    }}
+                    animate={{
+                      x: ["-100%", "100%"],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                    }}
+                  />
+                </motion.button>
+              </motion.div>
             </motion.div>
 
             {/* Image Side */}

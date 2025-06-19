@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin, Users, Mail, Send, Check } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogFooter } from "./dialog";
+import { Input } from "./input";
 
 const EventsSection = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
@@ -110,16 +112,16 @@ const EventsSection = () => {
         <motion.div
           className="absolute inset-0"
           style={{
-            background: `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%), 
+            background: `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%),
                         radial-gradient(circle at 70% 50%, ${currentEventData.secondaryColor}15 0%, transparent 50%)`,
           }}
           animate={{
             background: [
-              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%), 
+              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%),
                radial-gradient(circle at 70% 50%, ${currentEventData.secondaryColor}15 0%, transparent 50%)`,
-              `radial-gradient(circle at 60% 30%, ${currentEventData.primaryColor}25 0%, transparent 60%), 
+              `radial-gradient(circle at 60% 30%, ${currentEventData.primaryColor}25 0%, transparent 60%),
                radial-gradient(circle at 40% 70%, ${currentEventData.secondaryColor}20 0%, transparent 60%)`,
-              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%), 
+              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%),
                radial-gradient(circle at 70% 50%, ${currentEventData.secondaryColor}15 0%, transparent 50%)`,
             ],
           }}

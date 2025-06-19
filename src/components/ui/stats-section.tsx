@@ -181,12 +181,12 @@ const StatsSection = () => {
               <div className="text-left">
                 <h4
                   className={`font-bold text-lg transition-colors duration-300 ${
-                    activeSection === index ? "text-gray-900" : "text-gray-700"
+                    activeSection === index ? "text-white" : "text-white/80"
                   }`}
                 >
                   {section.title}
                 </h4>
-                <p className="text-sm text-gray-500">{section.subtitle}</p>
+                <p className="text-sm text-white/60">{section.subtitle}</p>
               </div>
             </div>
 

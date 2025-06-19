@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Calendar, MapPin, Users, Mail, Send, Check } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogFooter } from "./dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+} from "./dialog";
 import { Input } from "./input";
 
 const EventsSection = () => {

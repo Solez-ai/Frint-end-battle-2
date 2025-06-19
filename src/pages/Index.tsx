@@ -475,16 +475,24 @@ const Index = () => {
       <FeaturesSection ref={featuresRef} />
 
       {/* Events Section */}
-      <EventsSection />
+      <div id="events">
+        <EventsSection />
+      </div>
 
       {/* Stats Section */}
-      <StatsSection />
+      <div id="stats">
+        <StatsSection />
+      </div>
 
       {/* Pricing Section */}
-      <PricingSection />
+      <div id="pricing">
+        <PricingSection />
+      </div>
 
       {/* Testimonials Section */}
-      <TestimonialsSection />
+      <div id="testimonials">
+        <TestimonialsSection />
+      </div>
     </>
   );
 };

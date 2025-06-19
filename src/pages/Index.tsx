@@ -13,6 +13,7 @@ import TrustIndicators from "@/components/ui/trust-indicators";
 import DashboardPopup from "@/components/ui/dashboard-popup";
 import EventsSection from "@/components/ui/events-section";
 import StatsSection from "@/components/ui/stats-section";
+import PricingSection from "@/components/ui/pricing-section";
 
 const Index = () => {
   const [activeHover, setActiveHover] = useState<

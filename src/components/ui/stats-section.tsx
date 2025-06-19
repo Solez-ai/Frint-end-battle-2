@@ -347,42 +347,16 @@ const OutreachSection = ({ data }: { data: any[] }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.8 }}
-      className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-200"
+      className="bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20"
     >
-      {/* Header with Filters */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Social Engagement Analytics
-          </h2>
-          <p className="text-gray-600">
-            Company outreach performance and social media metrics
-          </p>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-gray-500" />
-            <span className="text-sm text-gray-500">Filter by</span>
-          </div>
-          <div className="flex gap-2">
-            {["All", "Engagement", "Reach"].map((filter) => (
-              <motion.button
-                key={filter}
-                onClick={() => setFilterType(filter)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  filterType === filter
-                    ? "bg-purple-600 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {filter}
-              </motion.button>
-            ))}
-          </div>
-        </div>
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-white mb-2">
+          Social Engagement Analytics
+        </h2>
+        <p className="text-white/70">
+          Company outreach performance and social media metrics
+        </p>
       </div>
 
       {/* Key Metrics */}

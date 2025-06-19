@@ -454,6 +454,9 @@ const Index = () => {
 
       {/* Events Section */}
       <EventsSection />
+
+      {/* Stats Section */}
+      <StatsSection />
     </>
   );
 };

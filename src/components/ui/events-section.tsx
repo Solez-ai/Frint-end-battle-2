@@ -7,6 +7,10 @@ import { Input } from "./input";
 const EventsSection = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [shuffledEvents, setShuffledEvents] = useState<number[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 

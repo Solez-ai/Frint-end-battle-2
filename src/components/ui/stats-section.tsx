@@ -407,17 +407,11 @@ const OutreachSection = ({ data }: { data: any[] }) => {
       </div>
 
       {/* Chart Area */}
-      <div className="relative h-80 bg-gray-50 rounded-2xl p-6">
-        <div className="text-right mb-4">
-          <span className="text-sm text-gray-500">
-            Intensity measured by engagement/month
+      <div className="relative h-80 bg-white/5 rounded-2xl p-6 border border-white/10">
+        <div className="text-center mb-4">
+          <span className="text-sm text-white/70">
+            Monthly Engagement Analytics - 2024 Performance
           </span>
-          <motion.button
-            className="ml-4 px-3 py-1 text-xs text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
-            whileHover={{ scale: 1.05 }}
-          >
-            Download the data
-          </motion.button>
         </div>
 
         {/* Y-axis labels */}

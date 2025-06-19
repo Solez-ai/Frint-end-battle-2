@@ -1040,7 +1040,6 @@ const ChargingContent = () => (
               "0 0 0 10px rgba(34, 197, 94, 0)",
             ],
           }}
-          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
         >
           94%
         </motion.div>

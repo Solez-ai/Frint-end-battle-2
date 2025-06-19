@@ -261,7 +261,7 @@ const TestimonialsSection = () => {
 
       {/* Testimonials Scattered Layout */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 h-[600px] overflow-visible">
-        {testimonials.map((testimonial, index) => {
+        {testimonials && testimonials.length > 0 ? testimonials.map((testimonial, index) => {
           const cardSize = {
             small: "w-64 h-48",
             medium: "w-80 h-56",
@@ -285,12 +285,7 @@ const TestimonialsSection = () => {
               }}
               transition={{
                 opacity: { duration: 0.8, delay: 0.3 + index * 0.15 },
-                scale: {
-                  duration: 0.8,
-                  delay: 0.3 + index * 0.15,
-                  type: "spring",
-                  bounce: 0.4,
-                },
+                scale: { duration: 0.8, delay: 0.3 + index * 0.15, type: "spring", bounce: 0.4 },
                 y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
                 rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
               }}

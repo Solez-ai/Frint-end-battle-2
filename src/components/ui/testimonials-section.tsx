@@ -27,7 +27,7 @@ const TestimonialsSection = () => {
       text: "The AI forecasting has completely transformed how we predict market trends. What used to take our team weeks now happens in real-time with incredible accuracy.",
       type: "individual",
       featured: false,
-      position: { top: "5%", left: "8%" },
+      position: { top: "5%", left: "5%" },
       size: "medium",
     },
     {

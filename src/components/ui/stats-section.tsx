@@ -339,7 +339,6 @@ const AIUsageSection = ({ data }: { data: any[] }) => {
 
 // Outreach Section Component
 const OutreachSection = ({ data }: { data: any[] }) => {
-  const [filterType, setFilterType] = useState("All");
   const maxEngagement = Math.max(...data.map((item) => item.engagement));
 
   return (

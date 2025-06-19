@@ -73,20 +73,49 @@ const EventsSection = () => {
     },
   ];
 
-  // Auto-rotate events every 4 seconds
+  // Shuffle function
+  const shuffleArray = (array: number[]) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Initialize shuffled events
   useEffect(() => {
-    if (!isInView) return;
+    setShuffledEvents(
+      shuffleArray(Array.from({ length: events.length }, (_, i) => i)),
+    );
+  }, [events.length]);
+
+  // Auto-rotate events every 5 seconds with shuffling
+  useEffect(() => {
+    if (!isInView || shuffledEvents.length === 0) return;
 
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentEvent((prev) => (prev + 1) % events.length);
+        setCurrentEvent((prev) => {
+          const currentIndex = shuffledEvents.indexOf(prev);
+          const nextIndex = (currentIndex + 1) % shuffledEvents.length;
+          // If we've gone through all events, reshuffle
+          if (nextIndex === 0) {
+            const newShuffled = shuffleArray(
+              Array.from({ length: events.length }, (_, i) => i),
+            );
+            setShuffledEvents(newShuffled);
+            return newShuffled[0];
+          }
+          return shuffledEvents[nextIndex];
+        });
         setIsTransitioning(false);
       }, 600); // Half of transition duration
-    }, 4000); // 4 seconds
+    }, 5000); // 5 seconds
 
     return () => clearInterval(interval);
-  }, [isInView, events.length]);
+  }, [isInView, events.length, shuffledEvents]);
 
   const currentEventData = events[currentEvent];
   const nextEventData = events[(currentEvent + 1) % events.length];

@@ -229,58 +229,6 @@ const PricingSection = () => {
         >
           Plans
         </motion.h3>
-
-        {/* Billing Toggle */}
-        <motion.div
-          className="flex items-center justify-center gap-6 mb-16"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <span
-            className={`text-lg font-medium transition-colors duration-300 ${
-              billingCycle === "monthly" ? "text-white" : "text-white/60"
-            }`}
-          >
-            Monthly
-          </span>
-
-          <motion.button
-            onClick={() =>
-              setBillingCycle(billingCycle === "monthly" ? "yearly" : "monthly")
-            }
-            className="relative w-16 h-8 bg-white/20 rounded-full p-1 transition-all duration-300 hover:bg-white/30"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg"
-              animate={{
-                x: billingCycle === "monthly" ? 0 : 32,
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-          </motion.button>
-
-          <div className="flex items-center gap-2">
-            <span
-              className={`text-lg font-medium transition-colors duration-300 ${
-                billingCycle === "yearly" ? "text-white" : "text-white/60"
-              }`}
-            >
-              Yearly
-            </span>
-            <motion.div
-              className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs px-2 py-1 rounded-full font-semibold"
-              animate={{
-                scale: billingCycle === "yearly" ? [1, 1.1, 1] : 1,
-              }}
-              transition={{ duration: 0.5 }}
-            >
-              Save 15%
-            </motion.div>
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Pricing Cards */}

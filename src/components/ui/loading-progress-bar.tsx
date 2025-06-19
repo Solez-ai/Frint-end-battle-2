@@ -127,7 +127,7 @@ export default function LoadingProgressBar({
               </div>
             </motion.div>
             <h1 className="text-white text-2xl font-bold tracking-wide">
-              Fusion
+              Front End Battle
             </h1>
           </motion.div>
 

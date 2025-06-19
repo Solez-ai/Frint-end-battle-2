@@ -415,7 +415,7 @@ const OutreachSection = ({ data }: { data: any[] }) => {
         </div>
 
         {/* Y-axis labels */}
-        <div className="absolute left-0 top-12 bottom-12 flex flex-col justify-between text-xs text-gray-500">
+        <div className="absolute left-0 top-12 bottom-12 flex flex-col justify-between text-xs text-white/60">
           {[3000, 2000, 1000, 0].map((value) => (
             <span key={value}>{value}</span>
           ))}

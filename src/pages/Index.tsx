@@ -561,6 +561,7 @@ const FeaturesSection = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
     <div
+      id="features"
       ref={ref}
       className="bg-gradient-to-b from-brand-900 via-brand-800 to-brand-900 relative overflow-hidden min-h-screen"
     >

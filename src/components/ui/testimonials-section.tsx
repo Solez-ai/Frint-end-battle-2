@@ -83,7 +83,7 @@ const TestimonialsSection = () => {
       text: "The natural language queries are a game-changer. I can ask complex questions in plain English and get detailed analytics instantly.",
       type: "individual",
       featured: false,
-      position: { top: "65%", right: "8%" },
+      position: { top: "65%", left: "75%" },
       size: "small",
     },
     {

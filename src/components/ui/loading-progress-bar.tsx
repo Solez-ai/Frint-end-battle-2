@@ -13,10 +13,10 @@ interface LoadingStage {
 }
 
 const loadingStages: LoadingStage[] = [
-  { label: "Initializing...", progress: 15, duration: 400 },
-  { label: "Loading assets...", progress: 35, duration: 600 },
-  { label: "Setting up components...", progress: 60, duration: 500 },
-  { label: "Finalizing...", progress: 85, duration: 400 },
+  { label: "Initializing...", progress: 15, duration: 500 },
+  { label: "Loading assets...", progress: 40, duration: 700 },
+  { label: "Setting up components...", progress: 70, duration: 600 },
+  { label: "Preparing interface...", progress: 90, duration: 400 },
   { label: "Ready!", progress: 100, duration: 300 },
 ];
 

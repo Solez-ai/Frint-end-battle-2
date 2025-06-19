@@ -102,7 +102,7 @@ const StatsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-b from-slate-50 via-gray-100 to-slate-200 overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-b from-brand-900 via-brand-800 to-teal-900 overflow-hidden"
     >
       {/* Header Section */}
       <motion.div

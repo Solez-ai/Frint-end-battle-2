@@ -460,25 +460,25 @@ const OutreachSection = ({ data }: { data: any[] }) => {
         {/* Target lines */}
         <div className="absolute inset-6 pointer-events-none">
           <motion.div
-            className="absolute w-full border-t-2 border-dashed border-gray-300"
+            className="absolute w-full border-t-2 border-dashed border-white/30"
             style={{ top: "25%" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
           >
-            <span className="absolute -right-16 -top-3 text-xs text-gray-500 bg-white px-2">
+            <span className="absolute -right-16 -top-3 text-xs text-white/70 bg-gray-900/80 px-2 rounded">
               Target 2025
             </span>
           </motion.div>
 
           <motion.div
-            className="absolute w-full border-t-2 border-dashed border-gray-400"
+            className="absolute w-full border-t-2 border-dashed border-white/40"
             style={{ top: "50%" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.7 }}
           >
-            <span className="absolute -right-16 -top-3 text-xs text-gray-500 bg-white px-2">
+            <span className="absolute -right-16 -top-3 text-xs text-white/70 bg-gray-900/80 px-2 rounded">
               Target 2024
             </span>
           </motion.div>

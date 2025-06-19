@@ -41,7 +41,7 @@ const TestimonialsSection = () => {
       text: "Since implementing this platform, our reporting efficiency increased by 400%. The automated insights have saved us countless hours and helped identify opportunities we never would have found manually.",
       type: "company",
       featured: true,
-      position: { top: "15%", right: "12%" },
+      position: { top: "15%", left: "70%" },
       size: "large",
     },
     {

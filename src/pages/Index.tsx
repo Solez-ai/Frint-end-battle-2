@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState, useRef, forwardRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Sparkles,
@@ -15,12 +15,26 @@ import EventsSection from "@/components/ui/events-section";
 import StatsSection from "@/components/ui/stats-section";
 import PricingSection from "@/components/ui/pricing-section";
 import TestimonialsSection from "@/components/ui/testimonials-section";
+import NavigationMenuDots from "@/components/ui/navigation-menu-dots";
 
 const Index = () => {
   const [activeHover, setActiveHover] = useState<
     "reports" | "forecasts" | "dashboards" | "consolidations" | null
   >(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        // Close any open menus - handled by NavigationMenuDots component
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const handleWordHover = (
     word: "reports" | "forecasts" | "dashboards" | "consolidations" | null,
@@ -37,8 +51,14 @@ const Index = () => {
 
   return (
     <>
+      {/* Navigation Menu */}
+      <NavigationMenuDots />
+
       {/* Hero Section */}
-      <div className="min-h-screen bg-gradient-to-br from-brand-900 via-brand-800 to-teal-900 relative overflow-hidden">
+      <div
+        id="hero"
+        className="min-h-screen bg-gradient-to-br from-brand-900 via-brand-800 to-teal-900 relative overflow-hidden"
+      >
         {/* Background decoration elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
@@ -455,16 +475,24 @@ const Index = () => {
       <FeaturesSection ref={featuresRef} />
 
       {/* Events Section */}
-      <EventsSection />
+      <div id="events">
+        <EventsSection />
+      </div>
 
       {/* Stats Section */}
-      <StatsSection />
+      <div id="stats">
+        <StatsSection />
+      </div>
 
       {/* Pricing Section */}
-      <PricingSection />
+      <div id="pricing">
+        <PricingSection />
+      </div>
 
       {/* Testimonials Section */}
-      <TestimonialsSection />
+      <div id="testimonials">
+        <TestimonialsSection />
+      </div>
     </>
   );
 };
@@ -533,6 +561,7 @@ const FeaturesSection = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
     <div
+      id="features"
       ref={ref}
       className="bg-gradient-to-b from-brand-900 via-brand-800 to-brand-900 relative overflow-hidden min-h-screen"
     >

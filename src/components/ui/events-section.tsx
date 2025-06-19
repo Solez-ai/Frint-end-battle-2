@@ -117,6 +117,24 @@ const EventsSection = () => {
     return () => clearInterval(interval);
   }, [isInView, events.length, shuffledEvents]);
 
+  // Email functionality
+  const handleEmailSubmit = () => {
+    if (email.trim()) {
+      setIsEmailSent(true);
+      setTimeout(() => {
+        setIsEmailModalOpen(false);
+        setIsEmailSent(false);
+        setEmail("");
+      }, 2000);
+    }
+  };
+
+  const handleEmailModalOpen = () => {
+    setIsEmailModalOpen(true);
+    setIsEmailSent(false);
+    setEmail("");
+  };
+
   const currentEventData = events[currentEvent];
   const nextEventData = events[(currentEvent + 1) % events.length];
 

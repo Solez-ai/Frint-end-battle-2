@@ -103,7 +103,7 @@ const PricingSection = () => {
           limit: "4hr response time",
         },
         { name: "API Access", included: true, limit: "10,000 calls/month" },
-        { name: "Advanced Analytics", included: true, limit: "Full suite" },
+        { name: "Advanced Analytics", included: false, limit: "Not included" },
         { name: "White-label Options", included: false, limit: "Not included" },
       ],
       limits: {

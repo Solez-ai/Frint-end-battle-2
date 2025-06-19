@@ -282,7 +282,7 @@ export default function LoadingProgressBar({
           className="absolute bottom-8 text-center"
         >
           <p className="text-gray-400 text-xs tracking-widest">
-            POWERED BY AI • BUILT FOR EFFICIENCY
+            MADE BY SAMIN YEASAR
           </p>
         </motion.div>
       </motion.div>

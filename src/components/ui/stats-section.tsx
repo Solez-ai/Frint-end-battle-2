@@ -162,8 +162,8 @@ const StatsSection = () => {
             onClick={() => setActiveSection(index)}
             className={`group relative overflow-hidden rounded-2xl p-6 transition-all duration-500 ${
               activeSection === index
-                ? "bg-white shadow-2xl scale-105"
-                : "bg-white/50 hover:bg-white/80 hover:scale-102"
+                ? "bg-white/10 shadow-2xl scale-105 border border-white/20"
+                : "bg-white/5 hover:bg-white/10 hover:scale-102 border border-white/10"
             }`}
             whileHover={{ y: -5 }}
             whileTap={{ scale: 0.98 }}

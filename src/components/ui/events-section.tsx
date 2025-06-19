@@ -1,10 +1,22 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin, Users, Mail, Send, Check } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+} from "./dialog";
+import { Input } from "./input";
 
 const EventsSection = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [shuffledEvents, setShuffledEvents] = useState<number[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
@@ -67,20 +79,67 @@ const EventsSection = () => {
     },
   ];
 
-  // Auto-rotate events every 4 seconds
+  // Shuffle function
+  const shuffleArray = (array: number[]) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Initialize shuffled events
   useEffect(() => {
-    if (!isInView) return;
+    setShuffledEvents(
+      shuffleArray(Array.from({ length: events.length }, (_, i) => i)),
+    );
+  }, [events.length]);
+
+  // Auto-rotate events every 5 seconds with shuffling
+  useEffect(() => {
+    if (!isInView || shuffledEvents.length === 0) return;
 
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentEvent((prev) => (prev + 1) % events.length);
+        setCurrentEvent((prev) => {
+          const currentIndex = shuffledEvents.indexOf(prev);
+          const nextIndex = (currentIndex + 1) % shuffledEvents.length;
+          // If we've gone through all events, reshuffle
+          if (nextIndex === 0) {
+            const newShuffled = shuffleArray(
+              Array.from({ length: events.length }, (_, i) => i),
+            );
+            setShuffledEvents(newShuffled);
+            return newShuffled[0];
+          }
+          return shuffledEvents[nextIndex];
+        });
         setIsTransitioning(false);
       }, 600); // Half of transition duration
-    }, 4000); // 4 seconds
+    }, 5000); // 5 seconds
 
     return () => clearInterval(interval);
-  }, [isInView, events.length]);
+  }, [isInView, events.length, shuffledEvents]);
+
+  // Email functionality
+  const handleEmailSubmit = () => {
+    if (email.trim()) {
+      setIsEmailSent(true);
+      setTimeout(() => {
+        setIsEmailModalOpen(false);
+        setIsEmailSent(false);
+        setEmail("");
+      }, 2000);
+    }
+  };
+
+  const handleEmailModalOpen = () => {
+    setIsEmailModalOpen(true);
+    setIsEmailSent(false);
+    setEmail("");
+  };
 
   const currentEventData = events[currentEvent];
   const nextEventData = events[(currentEvent + 1) % events.length];
@@ -110,16 +169,16 @@ const EventsSection = () => {
         <motion.div
           className="absolute inset-0"
           style={{
-            background: `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%), 
+            background: `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%),
                         radial-gradient(circle at 70% 50%, ${currentEventData.secondaryColor}15 0%, transparent 50%)`,
           }}
           animate={{
             background: [
-              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%), 
+              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%),
                radial-gradient(circle at 70% 50%, ${currentEventData.secondaryColor}15 0%, transparent 50%)`,
-              `radial-gradient(circle at 60% 30%, ${currentEventData.primaryColor}25 0%, transparent 60%), 
+              `radial-gradient(circle at 60% 30%, ${currentEventData.primaryColor}25 0%, transparent 60%),
                radial-gradient(circle at 40% 70%, ${currentEventData.secondaryColor}20 0%, transparent 60%)`,
-              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%), 
+              `radial-gradient(circle at 30% 50%, ${currentEventData.primaryColor}20 0%, transparent 50%),
                radial-gradient(circle at 70% 50%, ${currentEventData.secondaryColor}15 0%, transparent 50%)`,
             ],
           }}
@@ -413,6 +472,60 @@ const EventsSection = () => {
                   </motion.div>
                 ))}
               </motion.div>
+
+              {/* Email Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.7 }}
+              >
+                <motion.button
+                  onClick={handleEmailModalOpen}
+                  className="group relative overflow-hidden rounded-xl px-8 py-4 font-semibold text-white transition-all duration-300"
+                  style={{
+                    background: `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: `0 20px 40px ${currentEventData.primaryColor}40`,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  animate={{
+                    background: [
+                      `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                      `linear-gradient(135deg, ${currentEventData.secondaryColor}, ${currentEventData.primaryColor})`,
+                      `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                    ],
+                  }}
+                  transition={{
+                    background: { duration: 3, repeat: Infinity },
+                  }}
+                >
+                  <motion.div
+                    className="flex items-center gap-3"
+                    whileHover={{ x: 5 }}
+                  >
+                    <Mail className="w-5 h-5" />
+                    <span>Email me the Details</span>
+                  </motion.div>
+
+                  {/* Animated background gradient */}
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(45deg, transparent, ${currentEventData.primaryColor}30, transparent)`,
+                    }}
+                    animate={{
+                      x: ["-100%", "100%"],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                    }}
+                  />
+                </motion.button>
+              </motion.div>
             </motion.div>
 
             {/* Image Side */}
@@ -585,6 +698,186 @@ const EventsSection = () => {
         }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Email Modal */}
+      <Dialog open={isEmailModalOpen} onOpenChange={setIsEmailModalOpen}>
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 border-gray-700/50 backdrop-blur-xl">
+          <DialogHeader className="text-center">
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              className="mx-auto mb-4"
+            >
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center"
+                style={{
+                  background: `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`,
+                }}
+              >
+                <Mail className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            <DialogTitle asChild>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-2xl font-bold text-white mb-2"
+              >
+                Get Event Details
+              </motion.h2>
+            </DialogTitle>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-gray-300"
+            >
+              Enter your email to receive detailed information about{" "}
+              <span
+                className="font-semibold"
+                style={{ color: currentEventData.primaryColor }}
+              >
+                {currentEventData.title}
+              </span>
+            </motion.p>
+          </DialogHeader>
+
+          <AnimatePresence mode="wait">
+            {!isEmailSent ? (
+              <motion.div
+                key="email-form"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="space-y-4 py-4"
+              >
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Input
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/30"
+                    onKeyPress={(e) => e.key === "Enter" && handleEmailSubmit()}
+                  />
+                </motion.div>
+
+                <DialogFooter className="flex-col sm:flex-row gap-3">
+                  <motion.button
+                    onClick={() => setIsEmailModalOpen(false)}
+                    className="px-4 py-2 text-gray-300 hover:text-white transition-colors duration-200"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Cancel
+                  </motion.button>
+
+                  <motion.button
+                    onClick={handleEmailSubmit}
+                    disabled={!email.trim()}
+                    className="group relative overflow-hidden rounded-lg px-6 py-2 font-semibold text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      background: email.trim()
+                        ? `linear-gradient(135deg, ${currentEventData.primaryColor}, ${currentEventData.secondaryColor})`
+                        : "rgba(107, 114, 128, 0.5)",
+                    }}
+                    whileHover={
+                      email.trim()
+                        ? {
+                            scale: 1.05,
+                            boxShadow: `0 10px 25px ${currentEventData.primaryColor}40`,
+                          }
+                        : {}
+                    }
+                    whileTap={email.trim() ? { scale: 0.98 } : {}}
+                  >
+                    <motion.div
+                      className="flex items-center gap-2"
+                      whileHover={{ x: 2 }}
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>Send Details</span>
+                    </motion.div>
+                  </motion.button>
+                </DialogFooter>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="success-message"
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
+                className="text-center py-8"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.2,
+                    type: "spring",
+                    bounce: 0.6,
+                  }}
+                  className="mx-auto mb-4"
+                >
+                  <div
+                    className="w-20 h-20 rounded-full flex items-center justify-center"
+                    style={{
+                      background: `linear-gradient(135deg, #10b981, #059669)`,
+                    }}
+                  >
+                    <Check className="w-10 h-10 text-white" />
+                  </div>
+                </motion.div>
+
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  className="text-2xl font-bold text-white mb-2"
+                >
+                  Details Sent!
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  className="text-gray-300"
+                >
+                  The details were sent to{" "}
+                  <span className="font-semibold text-green-400">{email}</span>
+                  <br />
+                  Thanks a lot!
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                  className="mt-6"
+                >
+                  <motion.div
+                    className="w-24 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto"
+                    initial={{ width: 0 }}
+                    animate={{ width: 96 }}
+                    transition={{ duration: 1, delay: 0.7 }}
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

@@ -12,6 +12,9 @@ import {
 import TrustIndicators from "@/components/ui/trust-indicators";
 import DashboardPopup from "@/components/ui/dashboard-popup";
 import EventsSection from "@/components/ui/events-section";
+import StatsSection from "@/components/ui/stats-section";
+import PricingSection from "@/components/ui/pricing-section";
+import TestimonialsSection from "@/components/ui/testimonials-section";
 
 const Index = () => {
   const [activeHover, setActiveHover] = useState<
@@ -453,6 +456,15 @@ const Index = () => {
 
       {/* Events Section */}
       <EventsSection />
+
+      {/* Stats Section */}
+      <StatsSection />
+
+      {/* Pricing Section */}
+      <PricingSection />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
     </>
   );
 };

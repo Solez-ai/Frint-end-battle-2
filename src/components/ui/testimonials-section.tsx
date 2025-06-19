@@ -97,7 +97,7 @@ const TestimonialsSection = () => {
       text: "This platform has become the backbone of our decision-making process. The anomaly detection caught a critical issue last month that saved us over $2M in potential losses. The ROI has been incredible.",
       type: "company",
       featured: true,
-      position: { top: "35%", right: "25%" },
+      position: { top: "35%", left: "60%" },
       size: "large",
     },
     {

@@ -277,11 +277,7 @@ const TestimonialsSection = () => {
                 left: testimonial.position.left,
               }}
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={
-                isInView
-                  ? { opacity: 1, scale: 1, y: 0 }
-                  : { opacity: 0, scale: 0.8, y: 50 }
-              }
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{
                 duration: 0.8,
                 delay: 0.3 + index * 0.15,

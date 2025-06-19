@@ -362,47 +362,47 @@ const OutreachSection = ({ data }: { data: any[] }) => {
       {/* Key Metrics */}
       <div className="grid grid-cols-4 gap-6 mb-8">
         <motion.div
-          className="text-center p-4 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100"
+          className="text-center p-4 rounded-xl bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-400/30"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-gray-900">2.4M</div>
-          <div className="text-sm text-gray-600">Total Reach</div>
+          <Users className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-white">2.4M</div>
+          <div className="text-sm text-white/70">Total Reach</div>
         </motion.div>
 
         <motion.div
-          className="text-center p-4 rounded-xl bg-gradient-to-r from-green-50 to-green-100"
+          className="text-center p-4 rounded-xl bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/30"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <Heart className="w-8 h-8 text-green-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-gray-900">18.2K</div>
-          <div className="text-sm text-gray-600">Avg Engagement</div>
+          <Heart className="w-8 h-8 text-green-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-white">18.2K</div>
+          <div className="text-sm text-white/70">Avg Engagement</div>
         </motion.div>
 
         <motion.div
-          className="text-center p-4 rounded-xl bg-gradient-to-r from-purple-50 to-purple-100"
+          className="text-center p-4 rounded-xl bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-400/30"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <Share2 className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-gray-900">592</div>
-          <div className="text-sm text-gray-600">Total Posts</div>
+          <Share2 className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-white">592</div>
+          <div className="text-sm text-white/70">Total Posts</div>
         </motion.div>
 
         <motion.div
-          className="text-center p-4 rounded-xl bg-gradient-to-r from-orange-50 to-orange-100"
+          className="text-center p-4 rounded-xl bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/30"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <TrendingUp className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-gray-900">+47%</div>
-          <div className="text-sm text-gray-600">Growth Rate</div>
+          <TrendingUp className="w-8 h-8 text-orange-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-white">+47%</div>
+          <div className="text-sm text-white/70">Growth Rate</div>
         </motion.div>
       </div>
 

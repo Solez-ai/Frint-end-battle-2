@@ -1029,19 +1029,24 @@ const ChargingContent = () => (
           AI Model Accuracy
         </span>
         <motion.div
-          className="bg-green-500 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-sm shadow-lg"
-          initial={{ scale: 0, rotate: -180 }}
-          whileInView={{ scale: 1, rotate: 0 }}
-          transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
-          viewport={{ once: true }}
+          className="relative"
           animate={{
             boxShadow: [
               "0 0 0 0 rgba(34, 197, 94, 0.7)",
               "0 0 0 10px rgba(34, 197, 94, 0)",
             ],
           }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
         >
-          94%
+          <motion.div
+            className="bg-green-500 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-sm shadow-lg"
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
+            viewport={{ once: true }}
+          >
+            94%
+          </motion.div>
         </motion.div>
       </div>
       <div className="text-xs text-slate-500">

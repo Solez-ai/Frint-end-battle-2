@@ -260,7 +260,7 @@ const TestimonialsSection = () => {
       </motion.div>
 
       {/* Testimonials Scattered Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 h-[800px]">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 h-[600px] overflow-visible">
         {testimonials.map((testimonial, index) => {
           const cardSize = {
             small: "w-64 h-48",

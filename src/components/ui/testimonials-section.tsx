@@ -277,15 +277,23 @@ const TestimonialsSection = () => {
                 left: testimonial.position.left,
               }}
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.3 + index * 0.15,
-                type: "spring",
-                bounce: 0.4,
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: [0, -10, 0],
+                rotate: [0, 1, 0, -1, 0],
               }}
-              variants={floatingVariants}
-              animate="animate"
+              transition={{
+                opacity: { duration: 0.8, delay: 0.3 + index * 0.15 },
+                scale: {
+                  duration: 0.8,
+                  delay: 0.3 + index * 0.15,
+                  type: "spring",
+                  bounce: 0.4,
+                },
+                y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              }}
               onMouseEnter={() => setHoveredCard(testimonial.id)}
               onMouseLeave={() => setHoveredCard(null)}
               whileHover={{
